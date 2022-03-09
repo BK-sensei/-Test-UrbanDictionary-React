@@ -50,10 +50,6 @@ font-size: 32px;
 text-align:center;
 `
 
-
-
-import Header from '../components/Header';
-
 const Home = () => {
     let navigate = useNavigate();
 
@@ -78,33 +74,6 @@ const Home = () => {
 
     return (
         <div>
-<<<<<<< HEAD
-            <Header />
-            <form onClick={formik.handleSubmit}>
-                <div>
-                    <label htmlFor="username" >Username</label>
-                    <input 
-                        name="username"
-                        type="text" 
-                        placeholder="Enter your username"
-                        value={formik.values.username}
-                        onChange={formik.handleChange}
-                    />
-                    {formik.errors.username && <p>{formik.errors.username}</p>}
-                </div>
-                
-                <div>
-                    <label htmlFor="password" >Username</label>
-                    <input 
-                        name="password"
-                        type="text" 
-                        placeholder="Enter your password"
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                    />
-                    {formik.errors.password && <p>{formik.errors.password}</p>}
-                </div>
-=======
             <Header/>
             <Form onClick={formik.handleSubmit}>
                 <Center>
@@ -138,7 +107,6 @@ const Home = () => {
                     </div>
                 </Center>
                 <SubmitButton type="submit" value="Login"></SubmitButton>
->>>>>>> 7378c6688d254e5610b2df77d3d1daaa8e46383e
                 
             </Form>
         </div>
