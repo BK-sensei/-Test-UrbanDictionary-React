@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik"
 import * as Yup from 'yup'
 
+import Header from '../components/Header';
+
 const Home = () => {
     let navigate = useNavigate();
 
@@ -27,6 +29,7 @@ const Home = () => {
 
     return (
         <div>
+            <Header />
             <form onClick={formik.handleSubmit}>
                 <div>
                     <label htmlFor="username" >Username</label>
