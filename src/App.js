@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
 import '../src/App.css'
 
 import Home from './pages/Home'
 import Generator from './pages/Generator'
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
@@ -14,6 +14,7 @@ const App = () => {
           <Route exact path='/' element={ <Home /> } />
           <Route path='/generator' element={ <Generator />} />
           <Route path='/generator/*' element={ <Generator />} />
+          <Route path='*' element={ <NotFound />} />
       </Routes>
     </BrowserRouter>
   );

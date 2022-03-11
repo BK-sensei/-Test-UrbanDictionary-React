@@ -34,12 +34,16 @@ const Definition = styled.p`
 
 const Button = styled.button`
     background: #134FE5;
+    border: none;
     border-radius: 30px;
     color: #EFFF00;
-    font-weight: bold;
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-weight: 700;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    padding: 10px;
+    padding: 10px 20px;
     margin-bottom: 30px;
+    cursor: pointer;
 `
 
 const Generator = () => {
@@ -60,7 +64,6 @@ const Generator = () => {
     }
 
     const handleRandomClick = () => {
-        const randomDefinition = Math.floor(Math.random() * 10 + 1)
         getDefinition()
     }
 

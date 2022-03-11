@@ -5,53 +5,65 @@ import * as Yup from 'yup'
 import styled from 'styled-components'
 import Header from '../components/Header';
 
-const SubmitButton = styled.input`
-    margin-top:100px;    
-    width: 388px;
-    height: 91px;
-    font-family: Lora;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 41px;
-    text-align: center;
-
-    background: #EFFF00;
-    border-radius: 30px;
+const HomeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 
-const Form = styled.form`
-text-align:center;
-margin-top:50px;
+const LoginContainer = styled.div`
+    width: 35%;
+    padding: 20px;
+    margin: 30px;
 `
 
-const Center = styled.div`
-margin-top:50px;
-margin-bot:50px;
-`
-
-
-const TextBox = styled.input`
-width: 623px;
-height: 68px;
-text-align:center;
-background: #FFFFFF;
-border: 1px solid #000000;
-box-sizing: border-box;
-border-radius: 10px;
+const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
 `
 
 const Label = styled.label`
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    line-height: 41px;
+    font-weight: 700;
+`
 
-font-family: Lora;
-font-style: normal;
-font-weight: bold;
-font-size: 32px;
-text-align:center;
+const TextBox = styled.input`
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 5px;
+`
+
+const ErrorMessage = styled.span`
+    font-size: 14px;
+    color: red;
+    padding-left: 10px;
+`
+
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+const SubmitButton = styled.button`
+    background: #EFFF00;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-weight: 700;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 10px 40px;
+    margin-bottom: 30px;
+    cursor: pointer;
 `
 
 const Home = () => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -60,7 +72,7 @@ const Home = () => {
         },
         onSubmit: values => {
           console.log(values);
-          navigate("generator", { replace: true });
+          navigate("/generator");
         },
         validationSchema: Yup.object().shape({
             username: Yup.string()
@@ -69,18 +81,18 @@ const Home = () => {
           password: Yup.string()
               .required("Password is required")
               .min(6, "Password must contain a minimum of 6 characters")
-          }),
+        }),
+        validateOnChange: false,
       })
 
     return (
-        <div>
+        <HomeContainer>
             <Header/>
-            <Form onClick={formik.handleSubmit}>
-                <Center>
-                    <div>
-                        <Label htmlFor="username" >Username</Label>
-                    </div>
-                    <div>
+
+            <LoginContainer>
+                <form onClick={formik.handleSubmit}>
+                    <InputContainer>
+                        <Label htmlFor="username">Username</Label>
                         <TextBox 
                             name="username"
                             type="text" 
@@ -88,14 +100,13 @@ const Home = () => {
                             value={formik.values.username}
                             onChange={formik.handleChange}
                         />
-                        {formik.errors.username && <p>{formik.errors.username}</p>}
-                    </div>
-                </Center>
-                <Center>
-                    <div>
-                        <Label htmlFor="password" >Password</Label>
-                    </div>
-                    <div>
+                        <ErrorMessage>
+                            {formik.errors.username && <p>{formik.errors.username}</p>}
+                        </ErrorMessage>
+                    </InputContainer>
+
+                    <InputContainer>
+                        <Label htmlFor="password">Password</Label>
                         <TextBox 
                             name="password"
                             type="password" 
@@ -103,13 +114,18 @@ const Home = () => {
                             value={formik.values.password}
                             onChange={formik.handleChange}
                         />
-                        {formik.errors.password && <p>{formik.errors.password}</p>}
-                    </div>
-                </Center>
-                <SubmitButton type="submit" value="Login"></SubmitButton>
-                
-            </Form>
-        </div>
+                        <ErrorMessage>
+                            {formik.errors.password && <p>{formik.errors.password}</p>}
+                        </ErrorMessage>
+                    </InputContainer>
+
+                    <ButtonContainer>
+                        <SubmitButton type="submit">Login</SubmitButton>
+                    </ButtonContainer>
+                    
+                </form>
+            </LoginContainer>
+        </HomeContainer>
     );
 };
 
