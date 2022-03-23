@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,BrowserRouter } from "react-router-dom";
 import { useFormik } from "formik"
 import * as Yup from 'yup'
 import styled from 'styled-components'
@@ -96,6 +96,7 @@ const Home = () => {
                         <TextBox 
                             name="username"
                             type="text" 
+                            aria-label="username"
                             placeholder="Enter your username"
                             value={formik.values.username}
                             onChange={formik.handleChange}
@@ -110,6 +111,7 @@ const Home = () => {
                         <TextBox 
                             name="password"
                             type="password" 
+                            aria-label="password"
                             placeholder="Enter your password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
